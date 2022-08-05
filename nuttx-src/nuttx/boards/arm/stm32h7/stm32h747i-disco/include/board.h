@@ -402,6 +402,26 @@
 #define GPIO_UART4_SHUTD   (GPIO_OUTPUT | GPIO_PUSHPULL | GPIO_SPEED_50MHz | GPIO_OUTPUT_CLEAR | \
                            GPIO_PORTJ | GPIO_PIN13)
 
+/* UART8 */
+#define GPIO_UART8_RX   GPIO_UART8_RX_2         /* PJ9 */    
+#define GPIO_UART8_TX   GPIO_UART8_TX_2         /* PJ8 */
+
+/* SPI2 */
+#define GPIO_SPI2_MISO GPIO_SPI2_MISO_1 /* PB14 */
+#define GPIO_SPI2_MOSI GPIO_SPI2_MOSI_1 /* PB15 */
+#define GPIO_SPI2_SCK  GPIO_SPI2_SCK_1  /* PA9 */
+#define GPIO_SPI2_NSS  GPIO_SPI2_NSS_1  /* PB9 */
+
+/* SPI5 */
+#define GPIO_SPI5_MISO GPIO_SPI5_MISO_3 /* PJ11 */
+#define GPIO_SPI5_MOSI GPIO_SPI5_MOSI_3 /* PJ10 */
+#define GPIO_SPI5_SCK  GPIO_SPI5_SCK_3  /* PK0 */
+#define GPIO_SPI5_NSS  GPIO_SPI5_NSS_3  /* PK1 */
+
+/* I2C4 */
+#define GPIO_I2C4_SCL  GPIO_I2C4_SCL_1  /* PD12 */
+#define GPIO_I2C4_SDA  GPIO_I2C4_SDA_1  /* PB13 */
+
 /****************************************************************************
  * Public Data
  ****************************************************************************/
