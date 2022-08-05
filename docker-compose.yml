@@ -1,0 +1,15 @@
+version: '3'
+
+services:
+  nuttxspace:
+    image:  docker-nuttx
+    build:
+      context: .
+    stdin_open: true
+    tty: true
+    environment:
+      - USER_ID
+      - GROUP_ID
+    volumes:
+      - ${PWD}/nuttx-src:/nuttx-src
+    working_dir: "/nuttx-src"

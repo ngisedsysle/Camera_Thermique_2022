@@ -1,0 +1,35 @@
+#
+# For a description of the syntax of this configuration file,
+# see the file kconfig-language.txt in the NuttX tools repository.
+#
+
+
+config EXAMPLES_LEPTON
+	tristate "LEPTON example"
+	default n
+	depends on CAMERA_LEPTON
+	---help---
+		Enable the LEPTON example
+
+if EXAMPLES_LEPTON
+
+config EXAMPLES_LEPTON_DEVPATH
+	string "LEPTON device path"
+	default "/dev/lepton" if CAMERA_LEPTON
+
+config EXAMPLES_LEPTON_PROGNAME
+	string "LEPTON program name"
+	default "lepton"
+	---help---
+		This is the name of the program that will be used when the NSH ELF
+		program is installed.
+
+config EXAMPLES_LEPTON_PRIORITY
+	int "LEPTON task priority"
+	default 100
+
+config EXAMPLES_LEPTON_STACKSIZE
+	int "LEPTON stack size"
+	default DEFAULT_TASK_STACKSIZE
+
+endif
