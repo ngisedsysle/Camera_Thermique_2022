@@ -1,0 +1,44 @@
+#
+# For a description of the syntax of this configuration file,
+# see the file kconfig-language.txt in the NuttX tools repository.
+#
+
+if ARCH_BOARD_STM32H743VIT6_CT2022
+
+config STM32_ROMFS
+	bool "Automount baked-in ROMFS image"
+	default n
+	depends on FS_ROMFS
+	---help---
+		Select STM32_ROMFS_IMAGEFILE, STM32_ROMFS_DEV_MINOR, STM32_ROMFS_MOUNTPOINT
+
+config STM32_ROMFS_DEV_MINOR
+	int "Minor for the block device backing the data"
+	depends on STM32_ROMFS
+	default 64
+
+config STM32_ROMFS_MOUNTPOINT
+	string "Mountpoint of the custom romfs image"
+	depends on STM32_ROMFS
+	default "/rom"
+
+config STM32_ROMFS_IMAGEFILE
+	string "ROMFS image file to include into build"
+	depends on STM32_ROMFS
+	default "../../../rom.img"
+
+if LCD_FT80X_SPI
+
+config STM32H7_FT80X_INITFREQUENCY
+	int "FT80x initialization frequency"
+	default 400000
+	range 400000 11000000
+
+config STM32H7_FT80X_OPFREQUENCY
+	int "FT80x operational frequency"
+	default 20000000
+	range 400000 30000000
+
+endif # LCD_FT80X_SPI
+
+endif # ARCH_BOARD_STM32H743VIT6_CT2022

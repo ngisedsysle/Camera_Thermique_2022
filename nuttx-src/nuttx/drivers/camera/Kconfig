@@ -1,0 +1,40 @@
+#
+# For a description of the syntax of this configuration file,
+# see the file kconfig-language.txt in the NuttX tools repository.
+#
+
+menu "Camera Driver Support"
+
+menuconfig CAMERA
+	bool "Camera Driver Support"
+	default n
+	---help---
+		#TODO
+
+if CAMERA 
+
+	config CAMERA_LEPTON
+		bool "LEPTON 2.5 camera module"
+		default n
+
+	if CAMERA_LEPTON
+		
+		config LEPTON_SPI_FREQUENCY
+			int "SPI frequency"
+			default 4000000
+			---help---
+			LEPTON SPI frequency
+
+		config LEPTON_I2C_FREQUENCY
+			int "I2C frequency"
+			default 100000
+			range 1 400000
+			---help---
+			LEPTON I2C frequency
+
+	endif # CAMERA_LEPTON
+endif # CAMERA
+
+endmenu # CAMERA
+
+

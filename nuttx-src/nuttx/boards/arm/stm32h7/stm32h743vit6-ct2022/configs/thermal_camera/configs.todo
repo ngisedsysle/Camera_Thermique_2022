@@ -1,0 +1,13 @@
+thermal_camera's defconfig file is a simple copy from stm32h747i-disco. Should be editted !
+
+- [] enable SPI for LEPTON camera
+- [] enable I2C for LEPTON camera
+- [] enable SPI for RIVERDI screen
+- [] enable USB OTG FS
+- [] enable SPI for SD card
+- [] enable UART
+- [] enable DCMI for ov2640 camera
+- [] enable GPIO for LED / Boot0 gpio / GPIO KILL input
+- [] enable I2C for coulombmeter
+- [] enable I2C for RTC
+- [] enable OSC_IN pin for HSE

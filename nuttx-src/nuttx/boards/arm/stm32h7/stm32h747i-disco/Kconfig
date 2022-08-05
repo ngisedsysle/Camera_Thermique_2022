@@ -1,0 +1,38 @@
+#
+# For a description of the syntax of this configuration file,
+# see the file kconfig-language.txt in the NuttX tools repository.
+#
+
+if ARCH_BOARD_STM32H747I_DISCO
+
+
+if LCD_FT80X_SPI && ((STM32H7_SPI1 && !STM32H7_SPI1_REMAP) || STM32H7_SPI2)
+
+choice
+	prompt "FT80x SPI Selection"
+	default STM32H7_FT80X_SPI1 if STM32H7_SPI1 && !STM32H7_SPI1_REMAP
+	default STM32H7_FT80X_SPI2 if STM32H7_SPI2 && (!STM32H7_SPI1 || STM32H7_SPI1_REMAP)
+
+config STM32H7_FT80X_SPI1
+	bool "FT80x on SPI1"
+	depends on STM32H7_SPI1 && !STM32H7_SPI1_REMAP
+
+config STM32H7_FT80X_SPI2
+	bool "FT80x on SPI2"
+	depends on STM32H7_SPI2
+
+endchoice # FT80x SPI Selection
+
+config STM32H7_FT80X_INITFREQUENCY
+	int "FT80x initialization frequency"
+	default 400000
+	range 400000 11000000
+
+config STM32H7_FT80X_OPFREQUENCY
+	int "FT80x operational frequency"
+	default 20000000
+	range 400000 30000000
+
+endif # LCD_FT80X_SPI && ((STM32_SPI1 && !STM32_SPI1_REMAP) || STM32_SPI2)
+
+endif # ARCH_BOARD_STM32H747I_DISCO
