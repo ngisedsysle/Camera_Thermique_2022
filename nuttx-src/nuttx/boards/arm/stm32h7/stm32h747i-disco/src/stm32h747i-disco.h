@@ -161,6 +161,17 @@
 #define GPIO_FT80X_PD      (GPIO_OUTPUT | GPIO_OPENDRAIN | GPIO_SPEED_50MHz | \
                            GPIO_OUTPUT_CLEAR | GPIO_PORTJ| GPIO_PIN13)
 
+
+/* USB OTG HS
+ *
+ * PB13  OTG_HS_VBUS VBUS sensing 
+ * PC0  OTG_HS_PowerSwitchOn
+ * PJ1  OTG_HS_Overcurrent
+ */
+
+#define GPIO_OTGHS_VBUS (GPIO_INPUT|GPIO_FLOAT|GPIO_SPEED_100MHz|GPIO_OPENDRAIN|GPIO_PORTB|GPIO_PIN13)
+//#define GPIO_OTGHS_PWRON (GPIO_OUTPUT|GPIO_OUTPUT_SET|GPIO_FLOAT|GPIO_SPEED_100MHz|GPIO_PUSHPULL|GPIO_PORTC|GPIO_PIN4)
+#define GPIO_OTGHS_OVER  (GPIO_INPUT|GPIO_FLOAT|GPIO_SPEED_100MHz|GPIO_PUSHPULL|GPIO_PORTJ|GPIO_PIN1)
 /****************************************************************************
  * Public Functions Definitions
  ****************************************************************************/
@@ -253,8 +264,35 @@ int stm32_sdio_initialize(void);
 int stm32_ft80x_setup(void);
 #endif
 
+/****************************************************************************
+ * Name: stm32_lepton_setup
+ *
+ * Description:
+ *   Initialize and register the Lepton driver.
+ *
+ * Input Parameters:
+ *   None
+ *
+ * Returned Value:
+ *   Zero is returned on success.  Otherwise, a negated errno value is
+ *   returned to indicate the nature of the failure.
+ *
+ ****************************************************************************/
+
 #if defined(CONFIG_CAMERA_LEPTON) 
 int stm32_lepton_setup(void);
+#endif
+
+/****************************************************************************
+ * Name: stm32_usbinitialize
+ *
+ * Description:
+ *   Initialize the usb OTG HS driver
+ *
+ ****************************************************************************/
+
+#if defined(CONFIG_STM32H7_OTGHS)
+void stm32_usbinitialize(void);
 #endif
 
 #endif /* __ASSEMBLY__ */

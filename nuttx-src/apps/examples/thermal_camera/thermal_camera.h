@@ -118,8 +118,8 @@ uint16_t heatmap_pixel(float heat);
 uint16_t get_temp(int32_t idx);
 
 // usb functions
-// int open_usb(void);
-// int usb_transfer(int argc, char *argv[]);
+int open_usb(void);
+int usb_transfer(int argc, char *argv[]);
 
 // void clock_utc2calendar(time_t days, FAR int *year, FAR int *month,FAR int *day);
 // int clock_daysbeforemonth(int month, bool leapyear);
