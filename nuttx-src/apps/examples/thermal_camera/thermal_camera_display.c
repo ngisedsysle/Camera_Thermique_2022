@@ -1,5 +1,7 @@
 #include "thermal_camera.h"
 
+#ifdef CONFIG_LCD_FT80X_SPI
+
 extern FAR struct image_s *g_rgb_image;
 extern struct temp_info_s *g_temp_image;
 
@@ -325,3 +327,5 @@ int display(int argc, char *argv[])
     close(fd);
     return ret;
 }
+
+#endif  /*CONFIG_LCD_FT80X_SPI*/

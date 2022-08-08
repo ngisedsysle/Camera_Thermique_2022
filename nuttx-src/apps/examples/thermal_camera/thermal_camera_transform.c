@@ -1,5 +1,7 @@
 #include "thermal_camera.h"
 
+#ifdef CONFIG_CAMERA_LEPTON
+
 extern struct temp_info_s *g_temp_image;
 uint8_t rgb_image_buffer[LEPTON_FRAME_SIZE];
 
@@ -101,3 +103,5 @@ int transform_image(int argc, char *argv[])
     free(intermediate_buffer);
     return EXIT_FAILURE;
 }
+
+#endif  /*CONFIG_CAMERA_LEPTON*/

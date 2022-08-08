@@ -1,5 +1,7 @@
 #include "thermal_camera.h"
 
+#ifdef CONFIG_CAMERA_LEPTON
+
 uint8_t packets[LEPTON_PACKETTED_FRAME_SIZE];
 struct temp_info_s temp_image;
 struct temp_info_s *g_temp_image = &temp_image;
@@ -115,3 +117,4 @@ int read_image(int argc, char *argv[])
 //     printf("\n");
 //     printf("\n");
 // }
+#endif  /*CONFIG_CAMERA_LEPTON*/

@@ -5,29 +5,33 @@
 
 
 config EXAMPLES_THERMAL_CAMERA
-	tristate "Infrared camera example"
+	tristate "Thermal camera example"
 	default n
-	depends on CAMERA_LEPTON && LCD_FT80X
+	depends on CAMERA_LEPTON || LCD_FT80X_SPI || USBDEV
 	---help---
-		Enable the INFRARED CAMERA example
+		Enable the THERMAL CAMERA example
 
 if EXAMPLES_THERMAL_CAMERA
 
 config EXAMPLES_LEPTON_DEGREES_UNIT
 	bool "Temperature unit in degrees"
+	depends on CAMERA_LEPTON
 	default y
 	
 config EXAMPLES_LEPTON_DEVPATH
 	string "LEPTON device path"
+	depends on CAMERA_LEPTON
 	default "/dev/lepton" if CAMERA_LEPTON
 
 config EXAMPLES_FT80X_DEVPATH
 	string "FT80x device path"
+	depends on LCD_FT80X_SPI
 	default "/dev/ft800" if LCD_FT800
 	default "/dev/ft801" if LCD_FT801
 
 config EXAMPLES_FT80X_PRIMITIVES
 	bool "Enable primitive examples"
+	depends on LCD_FT80X_SPI
 	default n
 	---help---
 		Enable some low level tests of GPU primitives.  Not very interesting
@@ -35,6 +39,7 @@ config EXAMPLES_FT80X_PRIMITIVES
 
 config EXAMPLES_FT80X_EXCLUDE_BITMAPS
 	bool "Exclude bitmaps"
+	depends on LCD_FT80X_SPI
 	default n
 	---help---
 		On some very minimal platforms, you might want to exclude bitmaps
@@ -47,18 +52,18 @@ config EXAMPLES_USBDEV_INSTANCE
 	default 8
 
 config EXAMPLES_THERMAL_CAMERA_PROGNAME
-	string "infrared camera program name"
+	string "Thermal camera program name"
 	default "thermal_camera"
 	---help---
 		This is the name of the program that will be used when the NSH ELF
 		program is installed.
 
 config EXAMPLES_THERMAL_CAMERA_PRIORITY
-	int "Infrared camera task priority"
+	int "Thermal camera task priority"
 	default 100
 
 config EXAMPLES_THERMAL_CAMERA_STACKSIZE
-	int "Infrared camera stack size"
+	int "Thermal camera stack size"
 	default DEFAULT_TASK_STACKSIZE
 
 endif

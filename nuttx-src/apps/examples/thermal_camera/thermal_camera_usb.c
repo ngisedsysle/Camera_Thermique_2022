@@ -1,5 +1,7 @@
 #include "thermal_camera.h"
 
+#ifdef CONFIG_USBDEV
+
 #define CDCACM_DEVNAME_FORMAT  "/dev/ttyACM%d"
 #define CDCACM_DEVNAME_SIZE    16
 
@@ -66,3 +68,4 @@ int usb_transfer(int argc, char *argv[])
     close(fd);
     return EXIT_FAILURE;
 }
+#endif /*CONFIG_USBDEV*/
