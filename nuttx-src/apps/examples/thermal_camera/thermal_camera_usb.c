@@ -1,8 +1,12 @@
 #include "thermal_camera.h"
 
+#define CDCACM_DEVNAME_FORMAT  "/dev/ttyACM%d"
+#define CDCACM_DEVNAME_SIZE    16
+
 int open_usb(void)
 {
     struct boardioc_usbdev_ctrl_s ctrl;
+    char devname[CDCACM_DEVNAME_SIZE];
     FAR void *handle;
     int ret;
     int fd;
@@ -10,25 +14,34 @@ int open_usb(void)
     /* Initialize the USB serial driver */
     ctrl.usbdev = BOARDIOC_USBDEV_CDCACM;
     ctrl.action = BOARDIOC_USBDEV_CONNECT;
-    ctrl.instance = 2;
+    ctrl.instance = CONFIG_EXAMPLES_USBDEV_INSTANCE;
     ctrl.handle = &handle;
 
     ret = boardctl(BOARDIOC_USBDEV_CONTROL, (uintptr_t)&ctrl);
     if (ret < 0)
     {
-        printf("open_usb: ERROR: Failed to create the USB serial device: %d\n",
+        fprintf(stderr,"ERROR %d: Failed to create the USB serial device.\n",
                -ret);
         return 1;
     }
     /* disable all tracable bits, can be done later */
     usbtrace_enable(0);
 
-    fd = open(CONFIG_EXAMPLES_USB_DEVPATH, O_WRONLY);
+    snprintf(devname, CDCACM_DEVNAME_SIZE, CDCACM_DEVNAME_FORMAT, CONFIG_EXAMPLES_USBDEV_INSTANCE);
+    fd = open(devname, O_WRONLY);
     if (fd < 0)
     {
         int errcode = errno;
-        camerr("ERROR: Failed to open %s: %d\n",
-               CONFIG_EXAMPLES_USB_DEVPATH, errcode);
+
+         /* ENOTCONN means that the USB device is not yet connected */
+        if (errcode == ENOTCONN)
+        {
+            fprintf(stderr,"ERROR %d: USB device %s is not connected.\n", errcode,devname);
+        }
+        else
+        {
+            fprintf(stderr,"ERROR %d: fail to open usb device.\n", errcode,devname);
+        }
         UNUSED(errcode);
         return EXIT_FAILURE;
     }

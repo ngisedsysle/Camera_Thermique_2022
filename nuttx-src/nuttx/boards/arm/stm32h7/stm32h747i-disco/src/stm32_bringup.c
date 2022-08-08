@@ -219,19 +219,19 @@ int stm32_bringup(void)
 
 
 #if defined(CONFIG_STM32H7_FT80X_SPI1) || defined(CONFIG_STM32H7_FT80X_SPI2)
-  ret = stm32_ft80x_setup();
-  if (ret < 0)
-    {
-      syslog(LOG_ERR, "ERROR: stm32_ft80x_setup failed: %d\n", ret);
-    }
+  // ret = stm32_ft80x_setup();
+  // if (ret < 0)
+  //   {
+  //     syslog(LOG_ERR, "ERROR: stm32_ft80x_setup failed: %d\n", ret);
+  //   }
 #endif
 
 #if defined(CONFIG_CAMERA_LEPTON)
-  ret = stm32_lepton_setup();
-  if (ret < 0)
-    {
-      syslog(LOG_ERR, "ERROR: stm32_lepton_setup failed: %d\n", ret);
-    }
+  // ret = stm32_lepton_setup();
+  // if (ret < 0)
+  //   {
+  //     syslog(LOG_ERR, "ERROR: stm32_lepton_setup failed: %d\n", ret);
+  //   }
 #endif
 
 #if !defined(CONFIG_ARCH_LEDS) && defined(CONFIG_USERLED_LOWER)
@@ -242,6 +242,10 @@ int stm32_bringup(void)
     {
       syslog(LOG_ERR, "ERROR: userled_lower_initialize() failed: %d\n", ret);
     }
+#endif
+
+#if defined(CONFIG_STM32H7_OTGHS) || defined(CONFIG_STM32H7_OTGFS)
+  stm32_usbinitialize();
 #endif
 
   return OK;

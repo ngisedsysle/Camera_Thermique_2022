@@ -41,9 +41,10 @@ config EXAMPLES_FT80X_EXCLUDE_BITMAPS
 		which will require 10 s of kilobytes of memory (probably FLASH
 		memory, depending on the CPU and the linker script.)
 
-config EXAMPLES_USB_DEVPATH
-	string "USB device path"
-	default "/dev/ttyACM1" if CONFIG_CDCACM
+config EXAMPLES_USBDEV_INSTANCE
+	int "USB device instance"
+	depends on USBDEV
+	default 8
 
 config EXAMPLES_THERMAL_CAMERA_PROGNAME
 	string "infrared camera program name"

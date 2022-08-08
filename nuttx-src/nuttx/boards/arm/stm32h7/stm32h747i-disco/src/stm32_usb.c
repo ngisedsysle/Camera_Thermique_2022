@@ -132,6 +132,7 @@ void stm32_usbinitialize(void)
 
 #ifdef CONFIG_STM32H7_OTGHS
   stm32_configgpio(GPIO_OTGHS_OVER);
+  stm32_configgpio(GPIO_OTGHS_VBUS);
 #endif
 }
 
