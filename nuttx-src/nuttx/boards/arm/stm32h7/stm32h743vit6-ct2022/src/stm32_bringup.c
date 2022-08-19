@@ -167,29 +167,12 @@ int stm32_bringup(void)
     }
 #endif
 
-#ifdef HAVE_RTC_DRIVER
-  /* Instantiate the STM32 lower-half RTC driver */
-
-  lower = stm32_rtc_lowerhalf();
-  if (!lower)
+#if defined(CONFIG_RTC_MCP794XX)
+  ret = stm32_mcp794xx_initialize();
+  if (ret < 0)
     {
-      syslog(LOG_ERR,
-             "ERROR: Failed to instantiate the RTC lower-half driver\n");
-      return -ENOMEM;
-    }
-  else
-    {
-      /* Bind the lower half driver and register the combined RTC driver
-       * as /dev/rtc0
-       */
-
-      ret = rtc_initialize(0, lower);
-      if (ret < 0)
-        {
-          syslog(LOG_ERR,
-                 "ERROR: Failed to bind/register the RTC driver: %d\n", ret);
-          return ret;
-        }
+      syslog(LOG_ERR, "Failed to initialize MCP794XX RTC driver: %d\n", ret);
+      return ret;
     }
 #endif
 
@@ -220,19 +203,6 @@ int stm32_bringup(void)
     }
 #endif
 
-#if defined(CONFIG_CDCACM) && !defined(CONFIG_CDCACM_CONSOLE)
-  /* Initialize CDCACM */
-
-  syslog(LOG_INFO, "Initialize CDCACM device\n");
-
-  ret = cdcacm_initialize(0, NULL);
-  if (ret < 0)
-    {
-      syslog(LOG_ERR, "ERROR: cdcacm_initialize failed: %d\n", ret);
-    }
-#endif /* CONFIG_CDCACM & !CONFIG_CDCACM_CONSOLE */
-
-
 #if defined(CONFIG_STM32H7_FT80X)
   ret = stm32_ft80x_setup();
   if (ret < 0)
@@ -249,7 +219,7 @@ int stm32_bringup(void)
   }
 #endif
 
-#if defined(CONFIG_STM32H7_OTGHS) || defined(CONFIG_STM32H7_OTGFS)
+#if defined(CONFIG_STM32H7_OTGFS)
   stm32_usbinitialize();
 #endif
 

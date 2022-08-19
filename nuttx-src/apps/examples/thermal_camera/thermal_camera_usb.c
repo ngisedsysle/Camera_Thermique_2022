@@ -18,7 +18,7 @@ int open_usb(void)
     ctrl.action = BOARDIOC_USBDEV_CONNECT;
     ctrl.instance = CONFIG_EXAMPLES_USBDEV_INSTANCE;
     ctrl.handle = &handle;
-
+    
     ret = boardctl(BOARDIOC_USBDEV_CONTROL, (uintptr_t)&ctrl);
     if (ret < 0)
     {

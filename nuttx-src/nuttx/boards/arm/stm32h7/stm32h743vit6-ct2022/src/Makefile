@@ -76,4 +76,8 @@ ifeq ($(CONFIG_CAMERA_LEPTON),y)
 CSRCS += stm32_lepton.c
 endif
 
+ifeq ($(CONFIG_RTC_MCP794XX),y)
+CSRCS += stm32_mcp794xx.c
+endif
+
 include $(TOPDIR)/boards/Board.mk

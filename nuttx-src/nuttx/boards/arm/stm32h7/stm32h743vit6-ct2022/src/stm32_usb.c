@@ -132,14 +132,11 @@ void stm32_usbinitialize(void)
    * No GPIO configuration is required
    */
 
-  /* Configure the OTG FS VBUS sensing GPIO,
-   * Power On, and Overcurrent GPIOs
+  /* Configure the OTG FS VBUS sensing GPIO
    */
 
 #ifdef CONFIG_STM32H7_OTGFS
   stm32_configgpio(GPIO_OTGFS_VBUS);
-  // stm32_configgpio(GPIO_OTGFS_PWRON);
-  // stm32_configgpio(GPIO_OTGFS_OVER);
 #endif
 }
 
@@ -268,34 +265,6 @@ int stm32_usbhost_initialize(void)
 void stm32_usbhost_vbusdrive(int iface, bool enable)
 {
   DEBUGASSERT(iface == 0);
-
-  /* Set the Power Switch by driving the active high enable pin */
-
-  stm32_gpiowrite(GPIO_OTGFS_PWRON, enable);
-}
-#endif
-
-/****************************************************************************
- * Name: stm32_setup_overcurrent
- *
- * Description:
- *   Setup to receive an interrupt-level callback if an overcurrent
- *   condition is detected.
- *
- * Input Parameters:
- *   handler - New overcurrent interrupt handler
- *   arg     - The argument provided for the interrupt handler
- *
- * Returned Value:
- *   Zero (OK) is returned on success.  Otherwise, a negated errno value
- *   is returned to indicate the nature of the failure.
- *
- ****************************************************************************/
-
-#ifdef CONFIG_USBHOST
-int stm32_setup_overcurrent(xcpt_t handler, void *arg)
-{
-  return stm32_gpiosetevent(GPIO_OTGFS_OVER, true, true, true, handler, arg);
 }
 #endif
 
@@ -317,4 +286,22 @@ void stm32_usbsuspend(struct usbdev_s *dev, bool resume)
 }
 #endif
 
+/****************************************************************************
+ * Name:  stm32_usbpullup
+ *
+ * Description:
+ *   If USB is supported and the board supports a pullup via GPIO (for USB
+ *   software connect and disconnect), then the board software must provide
+ *   stm32_pullup. See include/nuttx/usb/usbdev.h for additional description
+ *   of this method. Alternatively, if no pull-up GPIO the following EXTERN
+ *   can be redefined to be NULL.
+ *
+ ****************************************************************************/
+
+int stm32_usbpullup(struct usbdev_s *dev, bool enable)
+{
+  usbtrace(TRACE_DEVPULLUP, (uint16_t)enable);
+  stm32_gpiowrite(GPIO_OTGFS_DP, enable);
+  return OK;
+}
 #endif /* CONFIG_STM32_OTGFS */

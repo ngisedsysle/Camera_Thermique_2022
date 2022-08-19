@@ -237,6 +237,18 @@ void weak_function stm32_usbinitialize(void);
 int stm32_usbhost_initialize(void);
 #endif
 
+/****************************************************************************
+ * Name: stm32_mcp794xx_initialize
+ *
+ * Description:
+ *   Initialize and register the MCP794xx RTC
+ *
+ ****************************************************************************/
+
+#ifdef CONFIG_RTC_MCP794XX
+int stm32_mcp794xx_initialize(void);
+#endif
+
 
 /****************************************************************************
  * Name: stm32_pwm_setup
@@ -286,6 +298,5 @@ int stm32_ft80x_setup(void);
 #if defined(CONFIG_CAMERA_LEPTON) 
 int stm32_lepton_setup(void);
 #endif
-
 
 #endif /*__BOARDS_ARM_STM32H7_STM32H743VIT6_CT2022_SRC_STM32H743VIT6_CT2022_H*/

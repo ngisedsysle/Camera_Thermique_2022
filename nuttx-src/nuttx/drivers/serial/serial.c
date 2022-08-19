@@ -1838,7 +1838,7 @@ void uart_connected(FAR uart_dev_t *dev, bool connected)
   /* Is the device disconnected?  Interrupts are disabled because this
    * function may be called from interrupt handling logic.
    */
-
+  
   flags = enter_critical_section();
   dev->disconnected = !connected;
   if (!connected)
