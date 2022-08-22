@@ -20,7 +20,7 @@ uint16_t lepton_getreg(FAR lepton_dev_t *priv, uint16_t regaddr)
    * Start <SlaveAddress> ACK <RegisterAddress1> ACK <RegisterAddress0> RESTART <DATA> ACK <Stop>
    */
   msg[0].frequency = CONFIG_LEPTON_I2C_FREQUENCY;
-  msg[0].addr = LEPTON_DEVICE_ADDR;
+  msg[0].addr = LEPTON_DEVICE_ADDR ;
   msg[0].flags = I2C_M_NOSTOP;
   msg[0].buffer = regaddr_buf;
   msg[0].length = 2;
