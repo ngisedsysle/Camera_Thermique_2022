@@ -48,7 +48,7 @@
  *
  *   HSI: 16 MHz RC factory-trimmed
  *   LSI: 32 KHz RC
- *   HSE: 8 MHz from MCO output of ST-LINK
+ *   HSE: 25 MHz from X2
  *   LSE: 32.768 kHz
  */
 
