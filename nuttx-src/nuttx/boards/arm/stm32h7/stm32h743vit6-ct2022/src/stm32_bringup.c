@@ -203,7 +203,7 @@ int stm32_bringup(void)
     }
 #endif
 
-#if defined(CONFIG_STM32H7_FT80X)
+#if defined(CONFIG_LCD_FT80X_SPI)
   ret = stm32_ft80x_setup();
   if (ret < 0)
   {

@@ -61,7 +61,7 @@ void stm32_spidev_initialize(void)
  *       Here, we only initialize chip select pins unique to the board
  *       architecture.
  */
-#if defined(CONFIG_STM32H7_FT80X)
+#if defined(CONFIG_LCD_FT80X_SPI)
   /* Configure the FT80x CS pin as an input */
   stm32_configgpio(GPIO_FT80X_CS);
 #endif

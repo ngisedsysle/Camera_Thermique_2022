@@ -159,6 +159,9 @@
 #define FT80X_SPIBUS 2
 #define GPIO_FT80X_CS (GPIO_OUTPUT | GPIO_OPENDRAIN | GPIO_SPEED_50MHz | \
                        GPIO_OUTPUT_SET | GPIO_PORTB | GPIO_PIN12)
+                       
+//was defined in the Kconfig file but since there's only SPI2 as option we define it here automatically
+#define CONFIG_STM32H7_FT80X_SPI2           
 #endif
 #define GPIO_FT80X_INT (GPIO_INPUT | GPIO_FLOAT | \
                         GPIO_EXTI | GPIO_PORTB | GPIO_PIN15)
