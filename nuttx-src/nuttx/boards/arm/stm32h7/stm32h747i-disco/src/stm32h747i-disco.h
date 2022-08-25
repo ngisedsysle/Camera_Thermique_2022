@@ -130,8 +130,8 @@
 #   define LEPTON_I2CBUS   4
 #   define GPIO_LEPTON_CS   (GPIO_OUTPUT | GPIO_OPENDRAIN | GPIO_SPEED_50MHz | \
                            GPIO_OUTPUT_SET | GPIO_PORTK | GPIO_PIN1)
-#   define GPIO_LEPTON_RST    (GPIO_INPUT | GPIO_FLOAT | \
-                           GPIO_EXTI | GPIO_PORTJ | GPIO_PIN5)
+#define GPIO_LEPTON_RST (GPIO_OUTPUT | GPIO_OPENDRAIN | GPIO_SPEED_50MHz | \
+                        GPIO_OUTPUT_SET | GPIO_PORTJ | GPIO_PIN5)
 #   define GPIO_LEPTON_PD      (GPIO_OUTPUT | GPIO_OPENDRAIN | GPIO_SPEED_50MHz | \
                            GPIO_OUTPUT_CLEAR | GPIO_PORTJ| GPIO_PIN0)
 #endif
