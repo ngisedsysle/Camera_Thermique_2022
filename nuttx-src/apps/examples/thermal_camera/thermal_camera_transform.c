@@ -85,7 +85,7 @@ int transform_image(int argc, char *argv[])
         g_temp_image->max_idx = max_idx;
 
         float range = (float)(max - min);
-
+        caminfo("min = %x\n", min);
         // printf("Temp: min %d, max %d, range: %d\n", min, max, (int)range);
 
         src = intermediate_buffer;

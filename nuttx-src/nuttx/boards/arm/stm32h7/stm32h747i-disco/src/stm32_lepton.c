@@ -237,7 +237,7 @@ int stm32_lepton_setup(void)
   ret = lepton_register(i2c, spi, &g_leptonlower.config);
   if (ret < 0)
   {
-    camerr("ERROR: Failed to register touchscreen device\n");
+    camerr("ERROR %d: Failed to register lepton device\n", ret);
 
     /* up_spiuninitialize(spi); */
 

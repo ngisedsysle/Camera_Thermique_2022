@@ -219,8 +219,10 @@ int stm32_lepton_setup(void)
   /* Configure the LEPTON interrupt pin as an input and powerdown pin as an
    * output.  Device is initially powered down.
    */
+
   stm32_configgpio(GPIO_LEPTON_RST);
   stm32_configgpio(GPIO_LEPTON_PD);
+  stm32_configgpio(GPIO_LEPTON_VSYNC);
 
   /* Get an instance of the SPI interface */
 
@@ -241,7 +243,7 @@ int stm32_lepton_setup(void)
   ret = lepton_register(i2c, spi, &g_leptonlower.config);
   if (ret < 0)
   {
-    camerr("ERROR: Failed to register touchscreen device\n");
+    camerr("ERROR %d: Failed to register lepton device\n", ret);
 
     /* up_spiuninitialize(spi); */
 
@@ -249,10 +251,5 @@ int stm32_lepton_setup(void)
   }
   return OK;
 }
-
-// static void lepton_destroy(const struct lepton_config_s *lower)
-// {
-//   /* Does nothing */
-// }
 
 #endif /* CONFIG_STM32H7_LEPTON */

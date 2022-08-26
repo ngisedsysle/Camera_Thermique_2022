@@ -86,14 +86,15 @@ static int lepton_uninit(void)
 
 int lepton_initialize(FAR struct lepton_dev_s *priv)
 {
-  uint16_t status;
   caminfo("Waiting for camera Lepton to be ready...\n");
-  do
+  uint16_t status = lepton_getreg(priv, LEPTON_REG_STATUS);   //shall return 0x06
+  if( !(status & LEPTON_BOOT_MASK) || (status & LEPTON_BUSY_MASK))
   {
-    up_mdelay(20);
-    status = lepton_getreg(priv, LEPTON_REG_STATUS);
-  } while (!(status & LEPTON_BOOT_MASK) || (status & LEPTON_BUSY_MASK));
-  caminfo("Camera Lepton is ready\n");
+    caminfo("Camera Lepton is not ready. Status value = 0x%x\n", status);
+    return -1;
+  }
+  
+  caminfo("Camera Lepton is ready. Status value = 0x%x\n", status);
   // TODO : add preprocessing
   return OK;
 }

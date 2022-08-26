@@ -11,8 +11,6 @@ uint16_t lepton_getreg(FAR lepton_dev_t *priv, uint16_t regaddr)
   regaddr_buf[0] = (regaddr >> 8);
   regaddr_buf[1] = regaddr & 0xff;
 
-  // caminfo("lepton_getregs: regaddr=%04x, regaddr_buf: %04x\n", regaddr, *((uint16_t *)regaddr_buf));
-
   uint8_t regval_buf[2];
 
   DEBUGASSERT(priv != NULL);
@@ -33,12 +31,10 @@ uint16_t lepton_getreg(FAR lepton_dev_t *priv, uint16_t regaddr)
 
   /* Write the register address */
   ret = I2C_TRANSFER(priv->i2c, msg, 2);
-  // ret = i2c_writeread(priv->i2c, &config, (FAR uint8_t *)buffer, 2, (FAR uint8_t *)&regval, 2);
   if (ret < 0)
   {
     camerr("i2c_writeread failed: %d\n", ret);
   }
-
   regval = (regval_buf[0] << 8) | regval_buf[1];
 
   return regval;

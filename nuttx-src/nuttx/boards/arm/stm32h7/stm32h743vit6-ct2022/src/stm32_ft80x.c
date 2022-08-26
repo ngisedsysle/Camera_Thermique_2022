@@ -286,7 +286,7 @@ int stm32_ft80x_setup(void)
   ret = ft80x_register(spi, &g_ft80xlower.config);
   if (ret < 0)
     {
-      lcderr("ERROR: Failed to register touchscreen device\n");
+      lcderr("ERROR %d : Failed to register touchscreen device\n", ret);
 
       /* up_spiuninitialize(spi); */
 

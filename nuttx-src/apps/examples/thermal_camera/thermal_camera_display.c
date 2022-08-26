@@ -201,6 +201,7 @@ int display(int argc, char *argv[])
         bitmap_cmds.bitmaplayout.cmd = FT80X_BITMAP_LAYOUT(FT80X_FORMAT_RGB565, g_rgb_image->stride, g_rgb_image->height);
         bitmap_cmds.bitmaptransformA.cmd = FT80X_BITMAP_TRANSFORM_A(256 / 4);
         bitmap_cmds.bitmaptransformE.cmd = FT80X_BITMAP_TRANSFORM_E(256 / 4);
+
         bitmap_cmds.bitmapsize.cmd = FT80X_BITMAP_SIZE(FT80X_FILTER_BILINEAR, FT80X_WRAP_BORDER, FT80X_WRAP_BORDER, g_rgb_image->width * 4, g_rgb_image->height * 4);
         bitmap_cmds.vertex2f.cmd = FT80X_VERTEX2F(0, 0);
         bitmap_cmds.restorecontext.cmd = FT80X_RESTORE_CONTEXT();
