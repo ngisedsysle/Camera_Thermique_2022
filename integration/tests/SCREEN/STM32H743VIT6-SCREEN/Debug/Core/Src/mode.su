@@ -1,0 +1,2 @@
+../Core/Src/mode.c:12:6:MODE_init	24	static
+../Core/Src/mode.c:17:6:MODE_touchInterrupt	8	static

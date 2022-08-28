@@ -1,0 +1,9 @@
+../Core/Src/Lcd/FT801.c:3:6:FT801cmdWrite	24	static
+../Core/Src/Lcd/FT801.c:10:6:FT801memWrite8	32	static
+../Core/Src/Lcd/FT801.c:25:6:FT801memWrite16	32	static
+../Core/Src/Lcd/FT801.c:40:6:FT801memWrite32	32	static
+../Core/Src/Lcd/FT801.c:57:10:FT801memWriteRAM32	80	dynamic
+../Core/Src/Lcd/FT801.c:103:10:FT801memWriteRAM8	72	dynamic
+../Core/Src/Lcd/FT801.c:125:9:FT801memRead8	40	static
+../Core/Src/Lcd/FT801.c:141:10:FT801memRead16	40	static
+../Core/Src/Lcd/FT801.c:158:10:FT801memRead32	40	static
