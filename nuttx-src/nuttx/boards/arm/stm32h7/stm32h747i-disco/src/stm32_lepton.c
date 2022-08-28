@@ -144,27 +144,7 @@ static void lepton_enable(const struct lepton_config_s *lower,
    * interrupts disabled during the reconfiguration.
    */
 
-  flags = enter_critical_section();
-  if (enable && priv->handler)
-    {
-      /* Configure the EXTI interrupt using the saved handler */
-
-      stm32_gpiosetevent(GPIO_FT80X_INT, true, true, true,
-                         priv->handler, priv->arg);
-    }
-  else
-    {
-      /* Configure the EXTI interrupt with a NULL handler to disable it.
-       *
-       * REVISIT:  There is a problem here... interrupts received while
-       * the EXTI is de-configured will not pend but will be lost.
-       */
-
-     stm32_gpiosetevent(GPIO_FT80X_INT, false, false, false,
-                        NULL, NULL);
-    }
-
-  leave_critical_section(flags);
+  // no interrupt GPIO yet
 }
 
 static void lepton_clear(const struct lepton_config_s *lower)
