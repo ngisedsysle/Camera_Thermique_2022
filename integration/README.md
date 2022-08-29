@@ -1,14 +1,14 @@
 # Integration notes
 
 <p align="center">
-  <img src="./images/thermal_camera_front" />
+  <img src="./images/thermal_camera_front.jpg" />
 </p>
 <p align="center">
 <em>STM32H743VIT6-CT2022 board from the front</em>
 </p>
 
 <p align="center">
-  <img src="./images/thermal_camera_back" />
+  <img src="./images/thermal_camera_back.jpg" />
 </p>
 <p align="center">
 <em>STM32H743VIT6-CT2022 board from the back</em>
