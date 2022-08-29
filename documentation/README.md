@@ -1,8 +1,8 @@
 # TO DO LIST
-- [] USB
-- [] SD
-- [] Visible camera
-- [] Coulombmeter & GPIO KILL
+- [ ] USB
+- [ ] SD
+- [ ] Visible camera
+- [ ] Coulombmeter & GPIO KILL
 - [x] RTC
 - [x] IR camera
 - [x] Screen
