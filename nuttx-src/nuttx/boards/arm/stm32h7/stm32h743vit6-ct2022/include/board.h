@@ -370,7 +370,7 @@
 /* I2C4 */
 
 #define GPIO_I2C4_SCL  GPIO_I2C4_SCL_1  /* PD12 */
-#define GPIO_I2C4_SDA  GPIO_I2C4_SDA_1  /* PB13 */
+#define GPIO_I2C4_SDA  GPIO_I2C4_SDA_1  /* PD13 */
 
 /* DCMI */
 
