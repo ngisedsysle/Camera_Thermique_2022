@@ -271,6 +271,10 @@ int display(int argc, char *argv[])
         center_cmds.west.cmd = FT80X_VERTEX2F(16 * (FT80X_DISPLAY_WIDTH / 2 - CENTER_CROSS_SIZE), 16 * (FT80X_DISPLAY_HEIGHT / 2));
         center_cmds.east.cmd = FT80X_VERTEX2F(16 * (FT80X_DISPLAY_WIDTH / 2 + CENTER_CROSS_SIZE), 16 * (FT80X_DISPLAY_HEIGHT / 2));
 
+        /* IMPORTANT !!
+        //   CONCATENATE THE 2 TEXT COMMANDS BELOW + CMD NUMBER TO DISPLAY CENTRAL TEMPERATURE INTO 1 TXT COMMAND USING SPRINTF
+        //   SO THAT IT INCLUDES THE NEGATIVE NUMBER AND DISPLAYS THEM IN A BETTER FORM
+        */
         center_cmds.text.cmd = FT80X_CMD_TEXT;
         center_cmds.text.x = 5;
         center_cmds.text.y = FT80X_DISPLAY_HEIGHT - 30;

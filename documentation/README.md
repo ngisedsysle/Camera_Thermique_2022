@@ -8,6 +8,8 @@
 - [x] Screen
 - [x]  UART
 
+Additionnaly, we advise you to modify the actual display function in the thermal_camera example. Currently, it does not support negative numbers. To correct that so that the global function is more efficient, concatenate the number command to display the central temperature and the 2 text commands around it, in one single text command using sprintf()
+
 # CHANGES   (we tried to put the most relevant here)
 
 ## STM32H747I-DISCO board
